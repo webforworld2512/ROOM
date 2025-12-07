@@ -35,4 +35,8 @@
 👉 **Responsive Design**: Follows responsive design principles to ensure optimal user experience across devices, adapting seamlessly to different screen sizes and resolutions.
 
 and many more, including code architecture and reusability. 
+<img width="1440" height="860" alt="Screenshot 2025-11-27 at 11 59 21 AM" src="https://github.com/user-attachments/assets/2a3b3cc2-9f61-4ede-a314-14982a5eb20b" />
+
+<img width="1440" height="861" alt="Screenshot 2025-11-27 at 11 59 49 AM" src="https://github.com/user-attachments/assets/ab02acc7-dd53-463f-a57e-2dad8ece32cd" />
+
 
