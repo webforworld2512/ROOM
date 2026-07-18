@@ -1,8 +1,6 @@
-
 "use client";
 
 import Image from "next/image";
-
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -20,69 +18,57 @@ interface MeetingCardProps {
 }
 
 const MeetingCard = ({
-  icon,
-  title,
-  date,
-  isPreviousMeeting,
-  buttonIcon1,
-  handleClick,
-  link,
-  buttonText,
+  icon, title, date, isPreviousMeeting,
+  buttonIcon1, handleClick, link, buttonText,
 }: MeetingCardProps) => {
   const { toast } = useToast();
 
   return (
-    <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-dark-1 px-5 py-8 xl:max-w-[568px]">
-      <article className="flex flex-col gap-5">
-        <Image src={icon} alt="upcoming" width={28} height={28} />
-        <div className="flex justify-between">
-          <div className="flex flex-col gap-2">
-            <h1 className="text-2xl font-bold">{title}</h1>
-            <p className="text-base font-normal">{date}</p>
-          </div>
+    <section className='flex min-h-[220px] w-full flex-col justify-between rounded-2xl bg-room-surface border border-room-rim px-5 py-6 xl:max-w-[568px]'>
+      <article className='flex flex-col gap-4'>
+        <Image src={icon} alt="meeting type" width={24} height={24} className='opacity-70' />
+        <div className='flex flex-col gap-1'>
+          <h1 className='text-lg font-semibold tracking-tight text-room-bone'>{title}</h1>
+          <p className='text-sm text-room-ash'>{date}</p>
         </div>
       </article>
-      <article className={cn("flex justify-center relative", {})}>
-        <div className="relative flex w-full max-sm:hidden">
+
+      <article className={cn("flex justify-between items-center", {})}>
+        <div className='relative flex max-sm:hidden'>
           {avatarImages.map((img, index) => (
             <Image
               key={index}
               src={img}
-              alt="attendees"
-              width={40}
-              height={40}
-              className={cn("rounded-full", { absolute: index > 0 })}
-              style={{ top: 0, left: index * 28 }}
+              alt="attendee"
+              width={36}
+              height={36}
+              className={cn('rounded-full border-2 border-room-surface', { 'absolute': index > 0 })}
+              style={{ top: 0, left: index * 24 }}
             />
           ))}
-          <div className="flex-center absolute left-[136px] size-10 rounded-full border-[5px] border-dark-3 bg-dark-4">
+          <div className='flex-center absolute size-9 rounded-full border-2 border-room-surface bg-room-rim text-xs text-room-ash' style={{ left: avatarImages.length * 24 }}>
             +5
           </div>
         </div>
+
         {!isPreviousMeeting && (
-          <div className="flex gap-2">
-            <Button onClick={handleClick} className="rounded bg-blue-1 px-6">
-              {buttonIcon1 && (
-                <Image src={buttonIcon1} alt="feature" width={20} height={20} />
-              )}
-              &nbsp; {buttonText}
+          <div className='flex gap-2'>
+            <Button
+              onClick={handleClick}
+              className='bg-room-ember text-[#160D00] font-semibold hover:bg-room-cinder px-5 rounded-lg'
+            >
+              {buttonIcon1 && <Image src={buttonIcon1} alt="action" width={16} height={16} className='mr-1' />}
+              {buttonText}
             </Button>
             <Button
               onClick={() => {
                 navigator.clipboard.writeText(link);
-                toast({
-                  title: "Link Copied",
-                });
+                toast({ title: "Link copied" });
               }}
-              className="bg-dark-4 px-6"
+              className='bg-room-rim text-room-ash hover:bg-room-dusk hover:text-room-bone px-5 rounded-lg'
             >
-              <Image
-                src="/icons/copy.svg"
-                alt="feature"
-                width={20}
-                height={20}
-              />
-              &nbsp; Copy Link
+              <Image src="/icons/copy.svg" alt="copy" width={16} height={16} className='mr-1' />
+              Copy Link
             </Button>
           </div>
         )}

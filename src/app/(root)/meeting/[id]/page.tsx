@@ -1,28 +1,13 @@
-"use client";
+import MeetingClient from './MeetingClient'
 
-import MeetingRoom from '@/components/MeetingRoom';
-import MeetingSetup from '@/components/MeetingSetup';
-import { useUser } from '@clerk/nextjs'
-import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk';
-import React, { useState } from 'react'
-import { useGetCallById } from '../../../../../hooks/usegetCallbyId';
+export function generateStaticParams() {
+  // Return empty array - dynamic routes will be handled client-side via catch-all
+  // For static export, we need at least one param, so return a placeholder
+  return [{ id: 'placeholder' }]
+}
 
-const Meeting = ({ params: {id} }: { params: { id: string } }) => {
-  const {user, isLoaded} = useUser();
-  const [isSetupComplete, setisSetupComplete] = useState(false);
-  const {call, isCallLoading} = useGetCallById(id);
-
-  if (!isLoaded || isCallLoading ) return;
-  return (
-    <main className='h-screen w-full'>
-      <StreamCall call={call}>
-        <StreamTheme>
-          {!isSetupComplete ? (<MeetingSetup setisSetupComplete={setisSetupComplete} />)
-          : (<MeetingRoom />)}
-        </StreamTheme>
-      </StreamCall>
-    </main>
-  )
+const Meeting = ({ params }: { params: { id: string } }) => {
+  return <MeetingClient id={params.id} />
 }
 
 export default Meeting
