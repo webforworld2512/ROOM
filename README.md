@@ -1,4 +1,11 @@
 
+# ROOM
+
+A modern video conferencing app built with Next.js and Stream.
+
+**Live:** [https://room-surabhi.vercel.app](https://room-surabhi.vercel.app)
+
+---
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
